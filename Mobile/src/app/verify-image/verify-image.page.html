@@ -1,0 +1,149 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-menu-button auto-hide="false"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content
+  class="ion-padding"
+  fullscreen="true"
+  scrollX="ture"
+  scrollY="true"
+>
+  <ion-grid>
+    <div
+      style="
+        border: 1px solid gray;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 5px;
+        padding-right: 5px;
+      "
+    >
+      <ion-row class="ion-text-center">
+        <ion-col>
+          <swiper-container>
+            <swiper-slide>
+              <!-- <ion-img src="{{dataitem.imageLink1}}"></ion-img> -->
+              <ion-img
+                *ngIf="dataitem.imageLink1"
+                [src]="dataitem.imageLink1"
+              ></ion-img>
+              <p *ngIf="!dataitem.imageLink1" class="image-placeholder">
+                No image available
+              </p>
+            </swiper-slide>
+            <swiper-slide>
+              <ion-img src="{{dataitem.imageLink2}}"></ion-img>
+            </swiper-slide>
+            <swiper-slide>
+              <ion-img src="{{dataitem.imageLink3}}"></ion-img>
+            </swiper-slide>
+          </swiper-container>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div>
+      <ion-row style="margin-top: 10px">
+        <ion-col size="6" style="padding-left: 0px">
+          <ion-button (click)="fetchPrevItem()" [disabled]="currentOffset===0">
+            Back
+          </ion-button>
+        </ion-col>
+        <ion-col size="6" style="padding-right: 0px; text-align: end">
+          <ion-button (click)="fetchNextItem()" [disabled]="!hasNextOffset">
+            Next
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <div>
+      <ion-row style="margin-top: 10px">
+        <ion-col
+          size="12"
+          style="padding-left: 15%; padding-right: 15%; margin-top: 10px"
+        >
+          <ion-item>
+            <ion-select
+              label="Label"
+              placeholder="Please Select"
+              [(ngModel)]="label"
+            >
+              <ion-select-option
+                *ngFor="let label of labelsList"
+                [value]="label.id"
+                >{{label.labelName}}</ion-select-option
+              >
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <div style="margin-top: 20px">
+      <ion-row>
+        <ion-col size="12">
+          <span style="font-weight: bold">Report Issus</span>
+        </ion-col>
+      </ion-row>
+      <ion-row style="margin-top: 10px">
+        <ion-col
+          size="12"
+          style="padding-left: 15%; padding-right: 15%; margin-top: 10px"
+        >
+          <ion-item>
+            <ion-select
+              label="Issue"
+              placeholder="Please Select"
+              [(ngModel)]="issue"
+            >
+              <ion-select-option
+                *ngFor="let issue of reportedIssuesList"
+                [value]="issue.id"
+                >{{issue.name}}</ion-select-option
+              >
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row style="margin-top: 10px">
+        <ion-col
+          size="12"
+          style="padding-left: 15%; padding-right: 15%; margin-top: 10px"
+        >
+          <ion-item *ngIf="issue === 'copyright'">
+            <ion-label position="floating">Copyright Link (Optional)</ion-label>
+            <ion-input type="text" [(ngModel)]="issueDetails"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row style="margin-top: 10px">
+        <ion-col
+          size="12"
+          style="padding-left: 15%; padding-right: 15%; margin-top: 10px"
+        >
+          <ion-item *ngIf="issue === 'other'">
+            <ion-label position="floating">Details</ion-label>
+            <ion-input type="text" [(ngModel)]="issueDetails"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <div>
+      <ion-row style="margin-top: 20px">
+        <ion-col size="12">
+          <ion-button
+            (click)="submitDetails()"
+            [disabled]="!(issue || label)"
+            expand="full"
+            >Submit</ion-button
+          >
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,134 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-menu-button auto-hide="false"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content
+  class="ion-padding"
+  fullscreen="true"
+  scrollX="false"
+  scrollY="true"
+>
+  <!-- <div style="text-align: center;">
+    <div style="display: inline-flex;">
+      <div style="margin-left: 48px;"><h2>Upload Image</h2></div>
+      <ion-button fill="clear">
+        <ion-icon slot="icon-only" name="help" style="font-size: 1.5em;margin-top: 2px;"></ion-icon>
+      </ion-button>
+    </div>
+  </div> -->
+  <div style="position: relative; text-align: center; padding: 16px">
+    <h2
+      style="display: inline-block; margin: 0; position: relative; z-index: 2"
+    >
+      Upload Image
+    </h2>
+    <ion-button
+      fill="clear"
+      style="position: absolute; top: 0; right: 0; z-index: 1"
+    >
+      <ion-icon
+        slot="icon-only"
+        name="help-circle-outline"
+        style="font-size: 1.5em"
+      ></ion-icon>
+    </ion-button>
+  </div>
+
+  <div style="margin-top: 15px">
+    <ion-grid class="ion-text-center">
+      <ion-row>
+        <ion-col size="12" style="text-align: -webkit-center">
+          <ion-button
+            *ngIf="!firstPicture.dataUrl"
+            fill="clear"
+            (click)="takeFirstPicture()"
+          >
+            <ion-icon
+              slot="icon-only"
+              name="camera"
+              style="font-size: 4.8em"
+            ></ion-icon>
+          </ion-button>
+          <ion-img
+            *ngIf="firstPicture.dataUrl"
+            [src]="firstPicture.dataUrl"
+            style="width: 80%"
+          ></ion-img>
+        </ion-col>
+      </ion-row>
+
+      <ion-row style="margin-top: 20px">
+        <ion-col size="12" style="text-align: -webkit-center">
+          <ion-button
+            *ngIf="!secondPicture.dataUrl"
+            fill="clear"
+            (click)="takeSecondPicture()"
+          >
+            <ion-icon
+              slot="icon-only"
+              name="camera"
+              style="font-size: 4.8em"
+            ></ion-icon>
+          </ion-button>
+          <ion-img
+            *ngIf="secondPicture.dataUrl"
+            [src]="secondPicture.dataUrl"
+            style="width: 80%"
+          ></ion-img>
+        </ion-col>
+      </ion-row>
+
+      <ion-row style="margin-top: 20px">
+        <ion-col size="12" style="text-align: -webkit-center">
+          <ion-button
+            *ngIf="!thirdPicture.dataUrl"
+            fill="clear"
+            (click)="takeThirdPicture()"
+          >
+            <ion-icon
+              slot="icon-only"
+              name="camera"
+              style="font-size: 4.8em"
+            ></ion-icon>
+          </ion-button>
+          <ion-img
+            *ngIf="thirdPicture.dataUrl"
+            [src]="thirdPicture.dataUrl"
+            style="width: 80%"
+          ></ion-img>
+        </ion-col>
+      </ion-row>
+
+      <ion-row style="margin-top: 10px">
+        <ion-col size="12" style="padding-left: 15%; padding-right: 15%">
+          <ion-item>
+            <ion-select
+              label="Label"
+              placeholder="Please Select"
+              [(ngModel)]="label"
+            >
+              <ion-select-option
+                *ngFor="let label of labelsList"
+                [value]="label.id"
+                >{{label.labelName}}</ion-select-option
+              >
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row style="margin-top: 20px">
+        <ion-col size="12">
+          <ion-button
+            [disabled]="!label || !firstPicture.dataUrl || !secondPicture.dataUrl || !thirdPicture.dataUrl"
+            (click)="uploadImages()"
+            >Submit</ion-button
+          >
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

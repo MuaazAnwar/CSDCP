@@ -1,0 +1,63 @@
+<ion-content
+  class="ion-padding"
+  fullscreen="true"
+  scrollX="false"
+  scrollY="false"
+>
+  <div class="ion-text-center" style="margin-top: 50%">
+    <h2>Login</h2>
+  </div>
+
+  <ion-item>
+    <ion-label position="floating">Email Address</ion-label>
+    <ion-input [(ngModel)]="email" type="email"></ion-input>
+  </ion-item>
+
+  <ion-item style="margin-top: 5px">
+    <ion-label position="floating">Password</ion-label>
+    <ion-input [(ngModel)]="password" type="password"></ion-input>
+  </ion-item>
+
+  <ion-button
+    (click)="onLoginClick()"
+    style="margin-left: 14px; margin-top: 25px"
+    fill="solid"
+    color="primary"
+    >Login</ion-button
+  >
+
+  <div class="ion-text-center" style="margin-top: 60px">
+    <h6>Or login with:</h6>
+  </div>
+
+  <ion-grid class="ion-text-center ion-padding">
+    <ion-row>
+      <ion-col>
+        <ion-button fill="outline">
+          <ion-icon name="logo-facebook"></ion-icon>
+        </ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button fill="outline">
+          <ion-icon name="logo-google"></ion-icon>
+        </ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button fill="outline">
+          <ion-icon name="logo-github"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <div></div>
+  <ion-button
+    (click)="openConfigModal()"
+    fill="clear"
+    style="position: absolute; top: 5px; right: 5px"
+  >
+    <ion-icon
+      name="settings-outline"
+      style="font-size: 0.7em; color: lightgrey"
+    ></ion-icon>
+  </ion-button>
+</ion-content>

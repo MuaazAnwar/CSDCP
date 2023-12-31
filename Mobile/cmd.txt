@@ -1,0 +1,6 @@
+npx ionic serve
+
+
+npx ionic build
+npx cap open android
+npx cap copy

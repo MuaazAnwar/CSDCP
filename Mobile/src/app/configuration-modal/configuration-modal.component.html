@@ -1,0 +1,17 @@
+<!-- configuration-modal.component.html -->
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Configuration</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-label position="stacked">Backend URL</ion-label>
+    <ion-input [(ngModel)]="backendUrl"></ion-input>
+    <ion-label position="stacked">Mock Server</ion-label>
+    <ion-checkbox [(ngModel)]="useMockResponse"></ion-checkbox>
+  </ion-item>
+  <ion-button expand="full" (click)="saveConfig()">Save</ion-button>
+  <ion-button expand="full" (click)="close()">Close</ion-button>
+</ion-content>

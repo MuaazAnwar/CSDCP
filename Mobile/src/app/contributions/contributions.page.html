@@ -1,0 +1,101 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-menu-button auto-hide="false"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content
+  class="ion-padding"
+  fullscreen="true"
+  scrollX="false"
+  scrollY="true"
+>
+  <div>
+    <h2>Contributions</h2>
+  </div>
+
+  <ion-searchbar
+    [debounce]="100"
+    (ionInput)="handleInput($event)"
+    (ionCancel)="resetInput()"
+    style="padding-left: 0px; padding-right: 0px"
+  ></ion-searchbar>
+  <div>
+    <ion-grid>
+      <div
+        style="
+          border: 1px solid gray;
+          padding-top: 10px;
+          padding-bottom: 10px;
+          padding-left: 5px;
+          padding-right: 5px;
+        "
+        *ngFor="let contribution of contributions;index as i"
+        [style.margin-top.px]="i!==20?30:0"
+      >
+        <ion-row class="ion-text-center">
+          <ion-col>
+            <swiper-container>
+              <swiper-slide>
+                <ion-img src="{{contribution.imageLink1}}"></ion-img>
+              </swiper-slide>
+              <swiper-slide>
+                <ion-img src="{{contribution.imageLink2}}"></ion-img>
+              </swiper-slide>
+              <swiper-slide>
+                <ion-img src="{{contribution.imageLink3}}"></ion-img>
+              </swiper-slide>
+            </swiper-container>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <ion-label>Your Share:</ion-label>
+            <ion-label style="padding-left: 10px"
+              >{{contribution.earning}}</ion-label
+            >
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <ion-label>Date Uploaded:</ion-label>
+            <ion-label style="padding-left: 10px"
+              >{{contribution.uploadedDate}}</ion-label
+            >
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <ion-label>Label Assigned:</ion-label>
+            <ion-label style="padding-left: 10px"
+              >{{contribution.assignedLabel}}</ion-label
+            >
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <ion-label>Your Rating:</ion-label>
+            <ion-label style="padding-left: 10px"
+              >{{contribution.rating}}</ion-label
+            >
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <ion-label>Contribution Type:</ion-label>
+            <ion-label style="padding-left: 10px"
+              >{{contribution.contributionType}}</ion-label
+            >
+          </ion-col>
+        </ion-row>
+      </div>
+    </ion-grid>
+  </div>
+</ion-content>

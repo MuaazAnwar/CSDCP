@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-menu-button auto-hide="false"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content
+  class="ion-padding"
+  fullscreen="true"
+  scrollX="false"
+  scrollY="false"
+>
+  <div class="ion-text-center">
+    <h2>Welcome to CSDCP</h2>
+  </div>
+
+  <div class="ion-text-center" style="margin-top: 50px">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-button (click)="goToUploadImage()">
+            <ion-icon
+              slot="start"
+              name="cloud-upload-outline"
+              style="margin-left: 0px; margin-right: 13.48px"
+            ></ion-icon>
+            Upload Image
+          </ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button (click)="goToVerifyImage()">
+            <ion-icon
+              slot="start"
+              name="cloud-done-outline"
+              style="margin-left: 0px; margin-right: 13.48px"
+            ></ion-icon>
+            Verify Image
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>
