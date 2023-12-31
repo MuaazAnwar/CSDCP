@@ -1,0 +1,21 @@
+.example-table {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.example-table th {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background-color: #f8f9fa; /* Add your preferred background color */
+  z-index: 100;
+}
+
+.example-table td,
+.example-table th {
+  padding: 8px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}

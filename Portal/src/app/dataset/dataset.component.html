@@ -1,0 +1,119 @@
+<div class="header">
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <div style="padding-top: 7px">
+        <span>{{ loggedInUser }}</span>
+      </div>
+      <span class="example-spacer"></span>
+
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="onHome()">
+          <span>Home</span>
+        </button>
+        <button mat-menu-item (click)="onLogout()">
+          <span>Logout</span>
+        </button>
+      </mat-menu>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div>
+
+<div class="content" style="padding: 20px">
+  <div style="text-align: center; margin-top: 10px; margin-bottom: 20px">
+    <div>
+      <span style="font-size: x-large">Downloaded Datasets</span>
+    </div>
+  </div>
+
+  <div class="example-table-container">
+    <table
+      mat-table
+      [dataSource]="data"
+      class="example-table"
+      matSort
+      matSortActive="created"
+      matSortDisableClear
+      matSortDirection="desc"
+    >
+      <!-- Number Column -->
+      <ng-container matColumnDef="number">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center">#</th>
+        <td mat-cell *matCellDef="let row" style="text-align: center">
+          {{ row.number }}
+        </td>
+      </ng-container>
+
+      <!-- Downloaded By -->
+      <ng-container matColumnDef="downloadedBy">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center">
+          Downloaded By
+        </th>
+        <td mat-cell *matCellDef="let row" style="text-align: center">
+          {{ row.downloadedBy }}
+        </td>
+      </ng-container>
+
+      <!-- Image Label Column -->
+      <ng-container matColumnDef="labels">
+        <th mat-header-cell *matHeaderCellDef>Image Label</th>
+        <td
+          mat-cell
+          *matCellDef="let row"
+          style="padding-top: 16px; padding-bottom: 16px"
+        >
+          {{ getStringLabels(row.labels) }}
+        </td>
+      </ng-container>
+
+      <!-- Download Date Column -->
+      <ng-container matColumnDef="downloadDate">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center">
+          Download date
+        </th>
+        <td mat-cell *matCellDef="let row" style="text-align: center">
+          {{ row.downloadDate | date }}
+        </td>
+      </ng-container>
+
+      <!-- Records Count Column -->
+      <ng-container matColumnDef="dataItemsCount">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center">
+          Records Count
+        </th>
+        <td mat-cell *matCellDef="let row" style="text-align: center">
+          {{ row.dataItemsCount }}
+        </td>
+      </ng-container>
+
+      <!-- Price Column -->
+      <ng-container matColumnDef="soldPrice">
+        <th mat-header-cell *matHeaderCellDef>Price</th>
+        <td mat-cell *matCellDef="let row">
+          <input
+            type="number"
+            [(ngModel)]="row.soldPrice"
+            (keyup.enter)="openConfirmationDialog(row)"
+            style="width: 70px"
+            [disabled]="row.sold"
+          />
+        </td>
+      </ng-container>
+
+      <!-- Sold Column -->
+      <ng-container matColumnDef="sold">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center">
+          Sold
+        </th>
+        <td mat-cell *matCellDef="let row">
+          <div style="text-align: center" *ngIf="row.sold">&#10003;</div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+</div>

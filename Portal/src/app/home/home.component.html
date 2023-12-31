@@ -1,0 +1,126 @@
+<div class="header">
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <div style="padding-top: 7px">
+        <span>{{ loggedInUser }}</span>
+      </div>
+      <span class="example-spacer"></span>
+
+      <button mat-icon-button (click)="downloadData()">
+        <mat-icon>file_download</mat-icon>
+      </button>
+
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="onDatasets()">
+          <span>Datasets</span>
+        </button>
+        <button mat-menu-item (click)="onLogout()">
+          <span>Logout</span>
+        </button>
+      </mat-menu>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div>
+<div class="content" style="padding: 10px">
+  <div style="text-align: center">
+    <div style="margin-top: 20px; margin-bottom: 20px">
+      <span style="font-size: x-large">Contributions</span>
+    </div>
+    <div style="margin-top: 15px">
+      <span style="font-size: large; padding-right: 10px">Filter by:</span>
+      <mat-form-field>
+        <!-- <mat-select
+          (ngModelChange)="labelSelected($event)"
+          [(ngModel)]="selectedLabelName"
+        >
+          <mat-option
+            *ngFor="let label of labelsList"
+            [value]="label.labelName"
+          >
+            {{ label.labelName }}
+          </mat-option>
+        </mat-select> -->
+        <mat-select
+          multiple
+          (ngModelChange)="labelSelected($event)"
+          [(ngModel)]="selectedLabels"
+          placeholder="All"
+        >
+          <mat-option
+            *ngFor="let label of labelsList"
+            [value]="label.labelName"
+          >
+            {{ label.labelName }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div style="display: flex; flex-wrap: wrap; justify-content: center">
+    <div
+      *ngFor="let contribution of filteredContributions; index as i"
+      style="margin: 10px"
+    >
+      <div
+        style="
+          border: 1px solid lightgray;
+          padding: 10px;
+          width: 400px !important;
+        "
+      >
+        <div>
+          <owl-carousel-o [options]="customOptions">
+            <ng-container>
+              <ng-template carouselSlide>
+                <img [src]="contribution.imageLink1" height="270px" />
+              </ng-template>
+              <ng-template carouselSlide>
+                <img [src]="contribution.imageLink2" height="270px" />
+              </ng-template>
+              <ng-template carouselSlide>
+                <img [src]="contribution.imageLink3" height="270px" />
+              </ng-template>
+            </ng-container>
+          </owl-carousel-o>
+        </div>
+
+        <div style="font-weight: bold; font-size: large; padding: 10px">
+          <span>{{ contribution.assignedLabel }}</span>
+        </div>
+
+        <div style="padding: 10px">
+          <span>Consensus Count:</span
+          ><span style="padding-left: 10px; font-weight: bold">{{
+            contribution.matchingLabelReviewsCount
+          }}</span>
+        </div>
+
+        <div style="padding: 10px">
+          <span>Contributor:</span
+          ><span style="padding-left: 10px; font-weight: bold">{{
+            contribution.contributedBy
+          }}</span>
+        </div>
+
+        <div style="padding: 10px">
+          <span>Validator Count:</span
+          ><span style="padding-left: 10px; font-weight: bold">{{
+            contribution.usersReviewedCount
+          }}</span>
+        </div>
+
+        <div style="padding: 10px">
+          <span>Contributio Date:</span
+          ><span style="padding-left: 10px; font-weight: bold">{{
+            contribution.contributionDate
+          }}</span>
+        </div>
+
+        <div></div>
+      </div>
+    </div>
+  </div>
+</div>
